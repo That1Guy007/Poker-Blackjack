@@ -12,19 +12,28 @@ Poker & BlackJack
 
 class deck{
     private:
+	card pHand[5];
+      	int deckIndex;
+        char spade; //unicode for the suits
+        char club;
+        char heart;
+        char diamond;
         int tempValue[13] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-        char tempSuit[4] = {spade, club, heart, diamond};
-        const char spade = '\E299A0'; //unicode for the suits
-        const char club = '\E299A3';
-        const char heart = '\E299A5';
-        const char diamond = '\E299A6';
-        card cards[52];
+        //const char *tempSuit[4] = {"\u2660", "\u2663", "\u2764", "\u2666"};
+	char tempSuit[4] = {'S', 'H', 'C', 'D'};        
+	card cards[52];
     public:
            deck();
            ~deck();
            void randomCardT(int);
            void shuffle();
-           void deal();//dealing card, idk what it should return
-           
+           void deal(int);//dealing card, idk what it should return
+	int getVal(int);
+	char getSuit(int);
+	void setBool(int, bool);
+	bool getBool(int);
+	void counterUp(int);
+	int getCounter(int);
+
 };
 #endif
