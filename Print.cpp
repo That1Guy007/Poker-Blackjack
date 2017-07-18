@@ -11,13 +11,15 @@ Poker & BlackJack
 
 using namespace std;
 
-print::print(){
-	setlocale(LC_ALL, "");//trying to print out unicode ....
+print::print(deck& obj){
+	//setlocale(LC_ALL, "");//trying to print out unicode ....
+	deckObj = obj;/*
 	deckObj.shuffle();
-	deckObj.deal(5);
+	deckObj.deal(5);*/
 }
 
-void print::printCard(){
+void print::printCard(deck& obj){
+	deckObj = obj;
   //edit to print for BJ
   //u know the suit and have it in the hand so take it from the hand and actually plug it into the string
   int modData;

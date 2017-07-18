@@ -27,13 +27,14 @@ class deck{
            ~deck();
            void randomCardT(int);
            void shuffle();
-           void deal(int);//dealing card, idk what it should return
+           void deal(int, int);//dealing card, idk what it should return
 	int getVal(int);
 	char getSuit(int);
 	void setBool(int, bool);
 	bool getBool(int);
 	void counterUp(int);
 	int getCounter(int);
+	void reDeal(int, int);
 
 };
 #endif

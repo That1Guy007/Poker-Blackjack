@@ -41,7 +41,7 @@ void deck::shuffle(){ //CAUSING DUPLICATES, CREATE AN ARRAY TO KEEP TRACK OF THE
 
 //Deals cards in order of how they are shuffled
 //
-void deck::deal( int cardsNeeded){ //needs to be tested
+void deck::deal( int cardsNeeded, int cardIndex){ //needs to be tested
   //need an index of the card in the deck whihc is next
    //need to make more for BJ
   for( int i = 0; i < cardsNeeded; i++){
@@ -50,9 +50,14 @@ void deck::deal( int cardsNeeded){ //needs to be tested
       deckIndex = 0;
       i--;
     }
+    else if(cardIndex != -1){
+    	//redeal
+    	pHand[cardIndex] = cards[deckIndex];
+    	deckIndex++;
+    }
     else{
-      pHand[i] = cards[deckIndex];
-	deckIndex++;
+      	pHand[i] = cards[deckIndex];
+		deckIndex++;
     }
   }
 }
@@ -81,6 +86,10 @@ int deck::getCounter(int cardIndex){
 	return pHand[cardIndex].counter;
 }
 
-
+void deck::reDeal(int keep, int handIndex){
+	if(keep == 0){
+		deal(1, handIndex);//redeal
+	}
+}
 
 
