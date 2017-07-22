@@ -60,6 +60,7 @@ void deck::deal( int cardsNeeded, int cardIndex){ //needs to be tested
 		deckIndex++;
     }
   }
+  organizeHand();
 }
 
 int deck::getVal(int cardIndex){
@@ -89,7 +90,29 @@ int deck::getCounter(int cardIndex){
 void deck::reDeal(int keep, int handIndex){
 	if(keep == 0){
 		deal(1, handIndex);//redeal
+		organizeHand();
 	}
 }
+
+void deck::organizeHand(){ // needs to be changd for blackjack
+	card tempC;//defalt card needed in construct of card
+	int min, max;
+	for (int i = 0; i < 5; i++){
+		min = i;
+		for(int j = i +1; j < 5; j++){
+			if(pHand[j].value < pHand[min].value){
+				min = j;
+			}
+		}
+		if(min != i){
+			tempC = pHand[i];
+			pHand[i] = pHand[min];
+			pHand[min] = tempC;
+		}
+	}
+}
+
+
+
 
 

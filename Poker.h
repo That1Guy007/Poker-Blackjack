@@ -14,7 +14,8 @@ Poker & BlackJack
 
 class Poker{
 		Poker();
-		void pokerGame();
+		void pokerGame();// actual poker logic
+		//need to split it up into multiple functinos probably
 };
 
 #endif

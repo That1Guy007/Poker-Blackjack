@@ -35,6 +35,7 @@ class deck{
 	void counterUp(int);
 	int getCounter(int);
 	void reDeal(int, int);
+	void organizeHand();
 
 };
 #endif
