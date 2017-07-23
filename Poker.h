@@ -13,9 +13,12 @@ Poker & BlackJack
 #include "Print.h"
 
 class Poker{
-		Poker();
-		void pokerGame();// actual poker logic
-		//need to split it up into multiple functinos probably
+		public:
+			Poker();
+		
+			//poker logic
+			void pokerGame();
+			// may need to split it up into multiple functinos probably
 };
 
 #endif

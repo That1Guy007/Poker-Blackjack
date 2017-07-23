@@ -36,6 +36,7 @@ class deck{
 	int getCounter(int);
 	void reDeal(int, int);
 	void organizeHand();
+	card riggedH(int);
 
 };
 #endif

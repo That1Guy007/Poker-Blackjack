@@ -8,9 +8,6 @@ Poker & BlackJack
 #include <iostream>
 #include <cstdlib>
 
-#include "Card.h" //may not need this
-#include "Deck.h"
-#include "Print.h"
 #include "Poker.h"
 
 

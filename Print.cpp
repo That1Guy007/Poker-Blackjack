@@ -57,7 +57,8 @@ void print::printCard(deck& obj){
     //algorithm for cards which have two suits on a line
     //and which lines only have 1 suit
     else if(cardLine >=10 && cardLine <35){
-      if((deckObj.getVal(modData) > 1 && deckObj.getVal(modData) <6)){
+      if((deckObj.getVal(modData) > 1 && deckObj.getVal(modData) <6)){ //NEEDS TO BE MODIFIED TO SHOW CORRECT NUMBER OF SUITS
+        //UTILIZE THE BOOL VAR OF THESE CARDS TO DECIDE WHEN TO SKIP
         cout<<"|   "<< deckObj.getSuit(modData) <<"   | ";
       }
       else{

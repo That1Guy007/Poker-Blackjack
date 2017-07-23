@@ -15,9 +15,9 @@ deck::deck(){
         club = '\u2663';
         heart = '\u2764';
         diamond = '\u2666';
-    for(int i = 0; i < 52; i++){ 
-        cards[i].value = tempValue[i %12];
-        cards[i].suit = tempSuit[i/13]; //cool
+    for(int i = 1; i < 53; i++){
+        cards[i-1].value = tempValue[i %13];
+        cards[i-1].suit = tempSuit[(i-1)/13]; //cool
     }
 }
 
@@ -40,10 +40,7 @@ void deck::shuffle(){ //CAUSING DUPLICATES, CREATE AN ARRAY TO KEEP TRACK OF THE
 }
 
 //Deals cards in order of how they are shuffled
-//
-void deck::deal( int cardsNeeded, int cardIndex){ //needs to be tested
-  //need an index of the card in the deck whihc is next
-   //need to make more for BJ
+void deck::deal( int cardsNeeded, int cardIndex){ 
   for( int i = 0; i < cardsNeeded; i++){
     if(deckIndex == 52){
       shuffle();
@@ -87,15 +84,16 @@ int deck::getCounter(int cardIndex){
 	return pHand[cardIndex].counter;
 }
 
+//redeal
 void deck::reDeal(int keep, int handIndex){
 	if(keep == 0){
-		deal(1, handIndex);//redeal
+		deal(1, handIndex);
 		organizeHand();
 	}
 }
 
-void deck::organizeHand(){ // needs to be changd for blackjack
-	card tempC;//defalt card needed in construct of card
+void deck::organizeHand(){ 
+	card tempC;
 	int min, max;
 	for (int i = 0; i < 5; i++){
 		min = i;
@@ -109,6 +107,91 @@ void deck::organizeHand(){ // needs to be changd for blackjack
 			pHand[i] = pHand[min];
 			pHand[min] = tempC;
 		}
+	}
+}
+
+card deck::riggedH(int i){
+	switch(i){
+		case 1://royal straight flush
+			for(int x = 0; x < 5; x++){
+				if(x+10 != 14){
+					pHand[x].value = x+10;
+				}
+				else{
+					pHand[x].value = 1;
+				}
+				pHand[x].suit = 'S';
+			}
+			organizeHand();
+			break;
+		
+		case 2: //straight flush
+			for(int x = 0; x < 5; x++){
+				pHand[x].value = x+9;
+				pHand[x].suit = 'C';
+			}
+			organizeHand();
+			break;
+		case 3://Full house
+			for(int x = 0; x < 5; x++){
+				pHand[x].value = (x+3)/3;
+				pHand[x].suit = tempSuit[x % 4];
+			}
+			organizeHand();
+			break;
+		case 4://straight
+			for(int x = 0; x < 5; x++){
+				pHand[x].value = x+9;
+				pHand[x].suit = tempSuit[x%4];
+			}
+			organizeHand();
+			break;
+		case 5://flush
+			for(int x = 0; x < 5; x++){
+				if(x<2){
+					pHand[x].value = x+1;
+				}
+				else{
+					pHand[x].value = x + 9;
+				}
+				pHand[x].suit = 'S';
+			}
+			organizeHand();
+			break;
+		case 6://two pair
+			for(int x = 0; x < 5; x++){
+				pHand[x].value = (x+2)/2;
+				pHand[x].suit = tempSuit[x%4];
+			}
+			organizeHand();
+			break;
+		case 7: //Pair
+			for(int x = 0; x < 5; x++){
+				if(x < 2){
+					pHand[x].value = (x+6)/2;
+				}
+				else{
+					pHand[x].value = x+9;
+				}
+				pHand[x].suit = tempSuit[x%4];
+			}
+			organizeHand();
+			break;
+		case 8: // High card
+			for(int x = 0; x < 5; x++){
+				if(x < 1){
+					pHand[x].value = 13;
+				}
+				else{
+					pHand[x].value = x+3;
+				}
+				pHand[x].suit = tempSuit[x%4];
+			}
+			organizeHand();
+			break;
+		default:
+			std::cout<<"Error";
+			break;
 	}
 }
 
